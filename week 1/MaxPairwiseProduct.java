@@ -3,15 +3,28 @@ import java.io.*;
 
 public class MaxPairwiseProduct {
      static long getMaxPairwiseProduct(int[] numbers) {
-        Long result = Long.valueOf(0);
-        int n = numbers.length;
-        for (int i = 0; i < n; i++) {
-            for (int j = i + 1; j < n; j++) {
-                result = Math.max(result,Long.valueOf(numbers[i])*numbers[j]);
-            }
-        }
-        return result;
-    }
+         if(number.length == 2) {
+             return Long.valueOf(numbers[0]) * numbers[1];
+         }
+         Long result = Long.valueOf(0);
+         int index = 0;
+         int maxNum = numbers[index];
+         int secondMax = numbers[0];
+         for(int i = 1; i < numbers.length; i++) {
+             if(numbers[i] > maxNum) {
+                 maxNum = numbers[i];
+                 index = i;
+             }
+         }
+         for(int i = 1; i < numbers.length; i++) {
+             if(i != index) {
+                 if(numbers[i] > secondMax && numbers[i] <= maxNum) {
+                     secondMax = numbers[i];
+                 }
+             }
+         }
+         return Long.valueOf(maxNum) * secondMax;
+     }
 
     public static void main(String[] args) {
         FastScanner scanner = new FastScanner(System.in);
